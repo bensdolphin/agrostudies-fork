@@ -37,8 +37,11 @@ export default function UserQuickEditForm({ currentUser, open, onClose }) {
     state: Yup.string().required('State is required'),
     city: Yup.string().required('City is required'),
     role: Yup.string().required('Role is required'),
+    passport: Yup.string().required('Passport is required'),
+    gradYear: Yup.string().required('Graduation year is required'),
   });
 
+  console.log(currentUser);
   const defaultValues = useMemo(
     () => ({
       name: currentUser?.name || '',
@@ -52,6 +55,8 @@ export default function UserQuickEditForm({ currentUser, open, onClose }) {
       status: currentUser?.status,
       company: currentUser?.company || '',
       role: currentUser?.role || '',
+      passport: currentUser?.passport || '',
+      gradYear: currentUser?.gradYear || '',
     }),
     [currentUser]
   );
@@ -118,6 +123,7 @@ export default function UserQuickEditForm({ currentUser, open, onClose }) {
 
             <RHFTextField name="name" label="Full Name" />
             <RHFTextField name="email" label="Email Address" />
+            <RHFTextField name="passport" label="Passport" />
             <RHFTextField name="phoneNumber" label="Phone Number" />
 
             <RHFAutocomplete
@@ -148,12 +154,7 @@ export default function UserQuickEditForm({ currentUser, open, onClose }) {
               }}
             />
 
-            <RHFTextField name="state" label="State/Region" />
-            <RHFTextField name="city" label="City" />
-            <RHFTextField name="address" label="Address" />
-            <RHFTextField name="zipCode" label="Zip/Code" />
-            <RHFTextField name="company" label="Company" />
-            <RHFTextField name="role" label="Role" />
+            <RHFTextField name="gradYear" label="Graduation Year" />
           </Box>
         </DialogContent>
 

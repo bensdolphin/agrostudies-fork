@@ -144,7 +144,7 @@ export const _userList = [...Array(20)].map((_, index) => ({
   zipCode: '85807',
   state: 'Virginia',
   city: 'Rancho Cordova',
-  year: _mock.number.year(index),
+  gradYear: _mock.number.year(index),
   role: _mock.role(index),
   email: _mock.email(index),
   passport: _mock.passports(index),

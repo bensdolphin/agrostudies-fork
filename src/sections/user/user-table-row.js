@@ -22,8 +22,18 @@ import UserQuickEditForm from './user-quick-edit-form';
 // ----------------------------------------------------------------------
 
 export default function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
-  const { name, avatarUrl, company, role, status, email, country, phoneNumber, year, passport } =
-    row;
+  const {
+    name,
+    avatarUrl,
+    company,
+    role,
+    status,
+    email,
+    country,
+    phoneNumber,
+    gradYear,
+    passport,
+  } = row;
 
   const confirm = useBoolean();
 
@@ -58,7 +68,7 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
 
         <TableCell sx={{ whiteSpace: 'nowrap' }}>{country}</TableCell>
 
-        <TableCell sx={{ whiteSpace: 'nowrap' }}>{year}</TableCell>
+        <TableCell sx={{ whiteSpace: 'nowrap' }}>{gradYear}</TableCell>
 
         {/* <TableCell sx={{ whiteSpace: 'nowrap' }}>{company}</TableCell> */}
 
@@ -97,8 +107,33 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         open={popover.open}
         onClose={popover.onClose}
         arrow="right-top"
-        sx={{ width: 140 }}
+        sx={{ width: 180 }}
       >
+        <MenuItem>
+          <Iconify icon="iconamoon:profile-fill" />
+          Open Profile
+        </MenuItem>
+        <MenuItem>
+          <Iconify icon="fluent:key-reset-20-filled" />
+          Reset Password
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            window.location.href = 'mailto:xyz@abc.com';
+          }}
+        >
+          <Iconify icon="ic:baseline-email" />
+          Send Email
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            onEditRow();
+            popover.onClose();
+          }}
+        >
+          <Iconify icon="solar:pen-bold" />
+          Edit
+        </MenuItem>
         <MenuItem
           onClick={() => {
             confirm.onTrue();
@@ -108,16 +143,6 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         >
           <Iconify icon="solar:trash-bin-trash-bold" />
           Delete
-        </MenuItem>
-
-        <MenuItem
-          onClick={() => {
-            onEditRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:pen-bold" />
-          Edit
         </MenuItem>
       </CustomPopover>
 
