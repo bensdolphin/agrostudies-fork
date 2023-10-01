@@ -41,7 +41,6 @@ export default function UserQuickEditForm({ currentUser, open, onClose }) {
     gradYear: Yup.string().required('Graduation year is required'),
   });
 
-  console.log(currentUser);
   const defaultValues = useMemo(
     () => ({
       name: currentUser?.name || '',

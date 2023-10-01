@@ -53,6 +53,8 @@ export default function UserNewEditForm({ currentUser }) {
     // not required
     status: Yup.string(),
     isVerified: Yup.boolean(),
+    passport: Yup.string().required('Passport is required'),
+    gradYear: Yup.string().required('Graduation year is required'),
   });
 
   const defaultValues = useMemo(
@@ -70,6 +72,8 @@ export default function UserNewEditForm({ currentUser }) {
       avatarUrl: currentUser?.avatarUrl || null,
       phoneNumber: currentUser?.phoneNumber || '',
       isVerified: currentUser?.isVerified || true,
+      passport: currentUser?.passport || '',
+      gradYear: currentUser?.gradYear || '',
     }),
     [currentUser]
   );
@@ -190,7 +194,7 @@ export default function UserNewEditForm({ currentUser }) {
               />
             )}
 
-            <RHFSwitch
+            {/* <RHFSwitch
               name="isVerified"
               labelPlacement="start"
               label={
@@ -204,7 +208,7 @@ export default function UserNewEditForm({ currentUser }) {
                 </>
               }
               sx={{ mx: 0, width: 1, justifyContent: 'space-between' }}
-            />
+            /> */}
 
             {currentUser && (
               <Stack justifyContent="center" alignItems="center" sx={{ mt: 3 }}>
@@ -229,6 +233,7 @@ export default function UserNewEditForm({ currentUser }) {
             >
               <RHFTextField name="name" label="Full Name" />
               <RHFTextField name="email" label="Email Address" />
+              <RHFTextField name="passport" label="Passport" />
               <RHFTextField name="phoneNumber" label="Phone Number" />
 
               <RHFAutocomplete
@@ -260,12 +265,14 @@ export default function UserNewEditForm({ currentUser }) {
                 }}
               />
 
-              <RHFTextField name="state" label="State/Region" />
+              <RHFTextField name="gradYear" label="Graduation Year" />
+
+              {/* <RHFTextField name="state" label="State/Region" />
               <RHFTextField name="city" label="City" />
               <RHFTextField name="address" label="Address" />
               <RHFTextField name="zipCode" label="Zip/Code" />
               <RHFTextField name="company" label="Company" />
-              <RHFTextField name="role" label="Role" />
+              <RHFTextField name="role" label="Role" /> */}
             </Box>
 
             <Stack alignItems="flex-end" sx={{ mt: 3 }}>
