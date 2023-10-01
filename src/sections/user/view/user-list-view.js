@@ -47,10 +47,11 @@ import UserTableFiltersResult from '../user-table-filters-result';
 const STATUS_OPTIONS = [{ value: 'all', label: 'All' }, ...USER_STATUS_OPTIONS];
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name' },
-  { id: 'phoneNumber', label: 'Phone Number', width: 180 },
-  { id: 'company', label: 'Company', width: 220 },
-  { id: 'role', label: 'Role', width: 180 },
+  { id: 'user', label: 'User', width: 200 },
+  { id: 'passport', label: 'Passport', width: 140 },
+  { id: 'phoneNumber', label: 'Phone Number', width: 140 },
+  { id: 'country', label: 'Country', width: 200 },
+  { id: 'gradYear', label: 'Graduation Year', width: 180 },
   { id: 'status', label: 'Status', width: 100 },
   { id: '', width: 88 },
 ];

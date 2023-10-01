@@ -27,6 +27,8 @@ import {
   _productNames,
   _descriptions,
   _phoneNumbers,
+  _years,
+  _passports,
 } from './assets';
 
 // ----------------------------------------------------------------------
@@ -44,9 +46,11 @@ export const _mock = {
   productName: (index) => _productNames[index],
   sentence: (index) => _sentences[index],
   description: (index) => _descriptions[index],
+  passports: (index) => _passports[index],
   // Contact
   email: (index) => _emails[index],
   phoneNumber: (index) => _phoneNumbers[index],
+
   fullAddress: (index) => _fullAddress[index],
   // Name
   firstName: (index) => _firstNames[index],
@@ -62,6 +66,7 @@ export const _mock = {
     nativeS: (index) => _nativeS[index],
     nativeM: (index) => _nativeM[index],
     nativeL: (index) => _nativeL[index],
+    year: (index) => _years[index],
   },
   // Image
   image: {

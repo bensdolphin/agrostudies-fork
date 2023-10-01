@@ -525,3 +525,37 @@ export const _descriptions = [
   `Ipsam aliquam velit nobis repellendus officiis aut deserunt id et. Nihil sunt aut dolores aut. Dolores est ipsa quia et laborum quidem laborum accusamus id. Facilis odit quod hic laudantium saepe omnis nisi in sint. Sed cupiditate possimus id.`,
   `Magnam non eveniet optio optio ut aliquid atque. Velit libero aspernatur quis laborum consequatur laudantium. Tempora facere optio fugit accusantium ut. Omnis aspernatur reprehenderit autem esse ut ut enim voluptatibus.`,
 ];
+
+// ----------------------------------------------------------------------
+
+export const _years = [
+  2018, 2016, 2015, 2020, 2017, 2016, 2019, 2015, 2017, 2015, 2019, 2018, 2018, 2019, 2016, 2017,
+  2019, 2015, 2020, 2017, 2016, 2018, 2020, 2016,
+];
+
+export const _passports = [
+  'J71234567',
+  'J89123456',
+  'J45098723',
+  'J12345678',
+  'J98765432',
+  'J23456789',
+  'J56789012',
+  'J34567890',
+  'J10987654',
+  'J76543210',
+  'J87654321',
+  'J98701234',
+  'J56789012',
+  'J23456789',
+  'J54321098',
+  'J90123456',
+  'J65432109',
+  'J12345678',
+  'J89012345',
+  'J45678901',
+  'J21098765',
+  'J67890123',
+  'J98765432',
+  'J54321098',
+];
