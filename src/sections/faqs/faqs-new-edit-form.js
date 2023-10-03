@@ -31,11 +31,11 @@ import FormProvider, {
   RHFAutocomplete,
 } from 'src/components/hook-form';
 //
-import PostDetailsPreview from './post-details-preview';
+import PostDetailsPreview from '../blog/post-details-preview';
 
 // ----------------------------------------------------------------------
 
-export default function PostNewEditForm({ currentPost }) {
+export default function FaqNewEditForm({ currentFaq, disableEditMode }) {
   const router = useRouter();
 
   const mdUp = useResponsive('up', 'md');
@@ -46,28 +46,17 @@ export default function PostNewEditForm({ currentPost }) {
 
   const NewBlogSchema = Yup.object().shape({
     title: Yup.string().required('Title is required'),
-    description: Yup.string().required('Description is required'),
     content: Yup.string().required('Content is required'),
-    coverUrl: Yup.mixed().nullable().required('Cover is required'),
-    tags: Yup.array().min(2, 'Must have at least 2 tags'),
-    metaKeywords: Yup.array().min(1, 'Meta keywords is required'),
-    // not required
-    metaTitle: Yup.string(),
-    metaDescription: Yup.string(),
+    tags: Yup.array().min(1, 'Must have at least 1 tags'),
   });
 
   const defaultValues = useMemo(
     () => ({
-      title: currentPost?.title || '',
-      description: currentPost?.description || '',
-      content: currentPost?.content || '',
-      coverUrl: currentPost?.coverUrl || null,
-      tags: currentPost?.tags || [],
-      metaKeywords: currentPost?.metaKeywords || [],
-      metaTitle: currentPost?.metaTitle || '',
-      metaDescription: currentPost?.metaDescription || '',
+      title: currentFaq?.heading || '',
+      content: currentFaq?.detail || '',
+      tags: currentFaq?.categories || [],
     }),
-    [currentPost]
+    [currentFaq]
   );
 
   const methods = useForm({
@@ -86,18 +75,18 @@ export default function PostNewEditForm({ currentPost }) {
   const values = watch();
 
   useEffect(() => {
-    if (currentPost) {
+    if (currentFaq) {
       reset(defaultValues);
     }
-  }, [currentPost, defaultValues, reset]);
+  }, [currentFaq, defaultValues, reset]);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
       await new Promise((resolve) => setTimeout(resolve, 500));
       reset();
       preview.onFalse();
-      enqueueSnackbar(currentPost ? 'Update success!' : 'Create success!');
-      router.push(paths.dashboard.post.root);
+      enqueueSnackbar(currentFaq ? 'Update success!' : 'Create success!');
+      disableEditMode();
       console.info('DATA', data);
     } catch (error) {
       console.error(error);
@@ -143,21 +132,9 @@ export default function PostNewEditForm({ currentPost }) {
           <Stack spacing={3} sx={{ p: 3 }}>
             <RHFTextField name="title" label="Post Title" />
 
-            <RHFTextField name="description" label="Description" multiline rows={3} />
-
             <Stack spacing={1.5}>
               <Typography variant="subtitle2">Content</Typography>
               <RHFEditor simple name="content" />
-            </Stack>
-
-            <Stack spacing={1.5}>
-              <Typography variant="subtitle2">Cover</Typography>
-              <RHFUpload
-                name="coverUrl"
-                maxSize={3145728}
-                onDrop={handleDrop}
-                onDelete={handleRemoveFile}
-              />
             </Stack>
           </Stack>
         </Card>
@@ -185,8 +162,8 @@ export default function PostNewEditForm({ currentPost }) {
           <Stack spacing={3} sx={{ p: 3 }}>
             <RHFAutocomplete
               name="tags"
-              label="Tags"
-              placeholder="+ Tags"
+              label="Categories"
+              placeholder="+ Categories"
               multiple
               freeSolo
               options={_tags.map((option) => option)}
@@ -209,46 +186,6 @@ export default function PostNewEditForm({ currentPost }) {
                 ))
               }
             />
-
-            <RHFTextField name="metaTitle" label="Meta title" />
-
-            <RHFTextField
-              name="metaDescription"
-              label="Meta description"
-              fullWidth
-              multiline
-              rows={3}
-            />
-
-            <RHFAutocomplete
-              name="metaKeywords"
-              label="Meta keywords"
-              placeholder="+ Keywords"
-              multiple
-              freeSolo
-              disableCloseOnSelect
-              options={_tags.map((option) => option)}
-              getOptionLabel={(option) => option}
-              renderOption={(props, option) => (
-                <li {...props} key={option}>
-                  {option}
-                </li>
-              )}
-              renderTags={(selected, getTagProps) =>
-                selected.map((option, index) => (
-                  <Chip
-                    {...getTagProps({ index })}
-                    key={option}
-                    label={option}
-                    size="small"
-                    color="info"
-                    variant="soft"
-                  />
-                ))
-              }
-            />
-
-            <FormControlLabel control={<Switch defaultChecked />} label="Enable comments" />
           </Stack>
         </Card>
       </Grid>
@@ -259,16 +196,6 @@ export default function PostNewEditForm({ currentPost }) {
     <>
       {mdUp && <Grid md={4} />}
       <Grid xs={12} md={8} sx={{ display: 'flex', alignItems: 'center' }}>
-        <FormControlLabel
-          control={<Switch defaultChecked />}
-          label="Publish"
-          sx={{ flexGrow: 1, pl: 3 }}
-        />
-
-        <Button color="inherit" variant="outlined" size="large" onClick={preview.onTrue}>
-          Preview
-        </Button>
-
         <LoadingButton
           type="submit"
           variant="contained"
@@ -276,7 +203,7 @@ export default function PostNewEditForm({ currentPost }) {
           loading={isSubmitting}
           sx={{ ml: 2 }}
         >
-          {!currentPost ? 'Create Post' : 'Save Changes'}
+          {!currentFaq ? 'Create Question' : 'Save Changes'}
         </LoadingButton>
       </Grid>
     </>
@@ -310,6 +237,7 @@ export default function PostNewEditForm({ currentPost }) {
   );
 }
 
-PostNewEditForm.propTypes = {
-  currentPost: PropTypes.object,
+FaqNewEditForm.propTypes = {
+  currentFaq: PropTypes.object,
+  disableEditMode: PropTypes.func,
 };

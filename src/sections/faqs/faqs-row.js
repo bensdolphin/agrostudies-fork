@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import TableCell from '@mui/material/TableCell';
@@ -20,38 +22,37 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 //
 // import UserQuickEditForm from './user-quick-edit-form';
 
+import { useState } from 'react';
 import FaqsFollowupForm from './faqs-followup-form';
+import FaqsEditForm from './faqs-new-edit-form';
 // ----------------------------------------------------------------------
 
-export default function FaqsRow({
-  row,
-  // row, selected, onEditRow, onSelectRow, onDeleteRow
-}) {
-  // const {
-  //   name,
-  //   avatarUrl,
-  //   company,
-  //   role,
-  //   status,
-  //   email,
-  //   country,
-  //   phoneNumber,
-  //   gradYear,
-  //   passport,
-  // } = row;
-
-  // const confirm = useBoolean();
-
-  // const quickEdit = useBoolean();
-
+export default function FaqsRow({ row }) {
   const popover = usePopover();
+
+  const [isEdited, setIsEdited] = useState(false);
 
   return (
     <>
-      <Typography>{row.detail}</Typography>
-      <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
-        <Iconify icon="eva:more-vertical-fill" />
-      </IconButton>
+      {isEdited ? (
+        <FaqsEditForm currentFaq={row} disableEditMode={() => setIsEdited(false)} />
+      ) : (
+        <Stack direction="row" justifyContent="space-between" spacing={2}>
+          <Typography>{row.detail}</Typography>{' '}
+          <MenuItem
+            sx={{ alignSelf: 'start' }}
+            onClick={() => {
+              setIsEdited(true);
+            }}
+          >
+            <Iconify icon="solar:pen-bold" />
+          </MenuItem>
+          {/* <IconButton color={popover.open ? 'inherit' : 'default'} onClick={popover.onOpen}>
+            <Iconify icon="eva:more-vertical-fill" />
+          </IconButton> */}
+        </Stack>
+      )}
+
       <CustomPopover
         open={popover.open}
         onClose={popover.onClose}
@@ -60,7 +61,7 @@ export default function FaqsRow({
       >
         <MenuItem
           onClick={() => {
-            onEditRow();
+            setIsEdited(true);
             popover.onClose();
           }}
         >

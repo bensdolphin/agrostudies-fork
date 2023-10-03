@@ -13,7 +13,7 @@ export default function FaqsForm() {
   return (
     <Stack component={MotionViewport} spacing={3} sx={{ mt: 2 }}>
       <m.div variants={varFade().inUp}>
-        <Typography variant="h4">{`Haven't found the right help?`}</Typography>
+        <Typography variant="h4">{`Haven't found the right help? Ask a new question`}</Typography>
       </m.div>
 
       {/* <m.div variants={varFade().inUp}>

@@ -184,12 +184,14 @@ export function useNavData() {
             title: t('FAQs'),
             path: paths.dashboard.faqs.root,
             icon: ICONS.tour,
-            // children: [
-            //   { title: t('list'), path: paths.dashboard.tour.root },
-            //   { title: t('details'), path: paths.dashboard.tour.demo.details },
-            //   { title: t('create'), path: paths.dashboard.tour.new },
-            //   { title: t('edit'), path: paths.dashboard.tour.demo.edit },
-            // ],
+            children: [
+              { title: t('list'), path: paths.dashboard.faqs.root },
+              { title: t('create'), path: paths.dashboard.faqs.new },
+              //   { title: t('list'), path: paths.dashboard.tour.root },
+              //   { title: t('details'), path: paths.dashboard.tour.demo.details },
+              //   { title: t('create'), path: paths.dashboard.tour.new },
+              //   { title: t('edit'), path: paths.dashboard.tour.demo.edit },
+            ],
           },
 
           // TOUR

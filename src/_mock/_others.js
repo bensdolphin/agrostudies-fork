@@ -19,7 +19,7 @@ export const FAQS_STATUS_OPTIONS = [
 ];
 
 export const _faqs = [...Array(8)].map((_, index) => {
-  const status =
+  const category =
     (index % 2 && FAQS_STATUS_OPTIONS[0].value) ||
     (index % 3 && FAQS_STATUS_OPTIONS[1].value) ||
     (index % 4 && FAQS_STATUS_OPTIONS[2].value) ||
@@ -30,7 +30,7 @@ export const _faqs = [...Array(8)].map((_, index) => {
     value: `panel${index + 1}`,
     heading: `Questions ${index + 1}`,
     detail: _mock.description(index),
-    status,
+    categories: [category],
   };
 });
 
