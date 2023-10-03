@@ -10,13 +10,13 @@ import FaqNewEditForm from '../faqs-new-edit-form';
 
 // ----------------------------------------------------------------------
 
-export default function UserCreateView() {
+export default function FAQsCreateView() {
   const settings = useSettingsContext();
 
   return (
     <Container maxWidth={settings.themeStretch ? false : 'lg'}>
       <CustomBreadcrumbs
-        heading="Create a new user"
+        heading="Create a New Question"
         links={[
           {
             name: 'Dashboard',

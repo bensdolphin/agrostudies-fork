@@ -1,3 +1,4 @@
+import { useState } from 'react';
 // @mui
 import Accordion from '@mui/material/Accordion';
 import Typography from '@mui/material/Typography';
@@ -19,10 +20,22 @@ import FaqsRow from './faqs-row';
 export default function FaqsList() {
   const popover = usePopover();
 
+  const [expanded, setExpanded] = useState(null);
+
+  function handleChange(questionId) {
+    return (event, newExpanded) => {
+      setExpanded(newExpanded ? questionId : null);
+    };
+  }
+
   return (
     <div>
       {_faqs.map((accordion) => (
-        <Accordion key={accordion.id}>
+        <Accordion
+          key={accordion.id}
+          expanded={expanded === accordion.id}
+          onChange={handleChange(accordion.id)}
+        >
           <AccordionSummary expandIcon={<Iconify icon="eva:arrow-ios-downward-fill" />}>
             <Typography variant="subtitle1">{accordion.heading}</Typography>
           </AccordionSummary>
