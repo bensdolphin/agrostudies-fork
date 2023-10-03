@@ -109,9 +109,14 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         arrow="right-top"
         sx={{ width: 180 }}
       >
-        <MenuItem>
-          <Iconify icon="iconamoon:profile-fill" />
-          Open Profile
+        <MenuItem
+          onClick={() => {
+            onEditRow();
+            popover.onClose();
+          }}
+        >
+          <Iconify icon="solar:pen-bold" />
+          Edit Profile
         </MenuItem>
         <MenuItem>
           <Iconify icon="fluent:key-reset-20-filled" />
@@ -124,15 +129,6 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         >
           <Iconify icon="ic:baseline-email" />
           Send Email
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            onEditRow();
-            popover.onClose();
-          }}
-        >
-          <Iconify icon="solar:pen-bold" />
-          Edit
         </MenuItem>
         <MenuItem
           onClick={() => {

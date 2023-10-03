@@ -13,6 +13,7 @@ import Switch from '@mui/material/Switch';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { MenuItem } from '@mui/material';
 // utils
 import { fData } from 'src/utils/format-number';
 // routes
@@ -29,6 +30,9 @@ import FormProvider, {
   RHFTextField,
   RHFUploadAvatar,
   RHFAutocomplete,
+  RHFCheckbox,
+  RHFSelect,
+  RHFUpload,
 } from 'src/components/hook-form';
 
 // ----------------------------------------------------------------------
@@ -50,11 +54,20 @@ export default function UserNewEditForm({ currentUser }) {
     role: Yup.string().required('Role is required'),
     zipCode: Yup.string().required('Zip code is required'),
     avatarUrl: Yup.mixed().nullable().required('Avatar is required'),
+    passport: Yup.string().required('Passport is required'),
+    gradYear: Yup.string().required('Graduation year is required'),
     // not required
     status: Yup.string(),
     isVerified: Yup.boolean(),
-    passport: Yup.string().required('Passport is required'),
-    gradYear: Yup.string().required('Graduation year is required'),
+    employmentStatus: Yup.string(),
+    selfEmployedOrEmployee: Yup.string(),
+    employmentField: Yup.string(),
+    university: Yup.string(),
+    openToJobs: Yup.string(),
+    areasOfInterest: Yup.string(),
+    lookingForEmployees: Yup.string(),
+    cv: Yup.mixed().nullable(),
+    linkedIn: Yup.string(),
   });
 
   const defaultValues = useMemo(
@@ -74,6 +87,15 @@ export default function UserNewEditForm({ currentUser }) {
       isVerified: currentUser?.isVerified || true,
       passport: currentUser?.passport || '',
       gradYear: currentUser?.gradYear || '',
+      employmentStatus: currentUser?.employmentStatus || '',
+      selfEmployedOrEmployee: currentUser?.selfEmployedOrEmployee || '',
+      employmentField: currentUser?.employmentField || '',
+      university: currentUser?.university || '',
+      openToJobs: currentUser?.openToJobs || '',
+      areasOfInterest: currentUser?.areasOfInterest || '',
+      lookingForEmployees: currentUser?.lookingForEmployees || '',
+      cv: currentUser?.cv || '',
+      linkedIn: currentUser?.linkedIn || '',
     }),
     [currentUser]
   );
@@ -235,7 +257,6 @@ export default function UserNewEditForm({ currentUser }) {
               <RHFTextField name="email" label="Email Address" />
               <RHFTextField name="passport" label="Passport" />
               <RHFTextField name="phoneNumber" label="Phone Number" />
-
               <RHFAutocomplete
                 name="country"
                 label="Country"
@@ -264,8 +285,39 @@ export default function UserNewEditForm({ currentUser }) {
                   );
                 }}
               />
-
               <RHFTextField name="gradYear" label="Graduation Year" />
+
+              <RHFTextField name="employmentStatus" label="Employment Status" />
+
+              <RHFSelect name="selfEmployedOrEmployee" label="Self-employed / Employee">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Self-employed</MenuItem>
+                <MenuItem value={4}>Employee</MenuItem>
+              </RHFSelect>
+
+              <RHFSelect name="employmentField" label="Field of Employment">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Head of Lab</MenuItem>
+                <MenuItem value={4}>Master of Commerce</MenuItem>
+              </RHFSelect>
+              <RHFTextField name="university" label="University" />
+              <RHFSelect name="openToJobs" label="Are you open to job offers?">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Yes</MenuItem>
+                <MenuItem value={4}>No</MenuItem>
+              </RHFSelect>
+              <RHFSelect name="areasOfInterest" label="In what areas of interest">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Dogs</MenuItem>
+                <MenuItem value={4}>Cats</MenuItem>
+              </RHFSelect>
+              <RHFSelect name="lookingForEmployees" label="Are you looking for employees">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Yes</MenuItem>
+                <MenuItem value={4}>No</MenuItem>
+              </RHFSelect>
+              {/* <RHFUpload /> */}
+              <RHFTextField name="linkedIn" label="LinkedIn Profile" />
 
               {/* <RHFTextField name="state" label="State/Region" />
               <RHFTextField name="city" label="City" />

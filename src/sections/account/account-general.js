@@ -24,8 +24,10 @@ import FormProvider, {
   RHFTextField,
   RHFUploadAvatar,
   RHFAutocomplete,
+  RHFSelect,
 } from 'src/components/hook-form';
 
+import { MenuItem } from '@mui/material';
 // ----------------------------------------------------------------------
 
 export default function AccountGeneral() {
@@ -46,6 +48,19 @@ export default function AccountGeneral() {
     about: Yup.string().required('About is required'),
     // not required
     isPublic: Yup.boolean(),
+    // added required
+    passport: Yup.string().required('Passport is required'),
+    gradYear: Yup.string().required('Graduation year is required'),
+    // added not required
+    employmentStatus: Yup.string(),
+    selfEmployedOrEmployee: Yup.boolean(),
+    employmentField: Yup.string(),
+    university: Yup.string(),
+    openToJobs: Yup.boolean(),
+    areasOfInterest: Yup.string(),
+    lookingForEmployees: Yup.boolean(),
+    cv: Yup.mixed().nullable(),
+    linkedIn: Yup.string(),
   });
 
   const defaultValues = {
@@ -60,6 +75,18 @@ export default function AccountGeneral() {
     zipCode: user?.zipCode || '',
     about: user?.about || '',
     isPublic: user?.isPublic || false,
+    // added
+    passport: user?.passport || '',
+    gradYear: user?.gradYear || '',
+    employmentStatus: user?.employmentStatus || '',
+    selfEmployedOrEmployee: user?.selfEmployedOrEmployee || '',
+    employmentField: user?.employmentField || '',
+    university: user?.university || '',
+    openToJobs: user?.openToJobs || '',
+    areasOfInterest: user?.areasOfInterest || '',
+    lookingForEmployees: user?.lookingForEmployees || '',
+    cv: user?.cv || '',
+    linkedIn: user?.linkedIn || '',
   };
 
   const methods = useForm({
@@ -124,12 +151,12 @@ export default function AccountGeneral() {
               }
             />
 
-            <RHFSwitch
+            {/* <RHFSwitch
               name="isPublic"
               labelPlacement="start"
               label="Public Profile"
               sx={{ mt: 5 }}
-            />
+            /> */}
 
             <Button variant="soft" color="error" sx={{ mt: 3 }}>
               Delete User
@@ -180,14 +207,46 @@ export default function AccountGeneral() {
                   );
                 }}
               />
+              <RHFTextField name="gradYear" label="Graduation Year" />
 
-              <RHFTextField name="state" label="State/Region" />
+              <RHFTextField name="employmentStatus" label="Employment Status" />
+
+              <RHFSelect name="selfEmployedOrEmployee" label="Self-employed / Employee">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Self-employed</MenuItem>
+                <MenuItem value={4}>Employee</MenuItem>
+              </RHFSelect>
+
+              <RHFSelect name="employmentField" label="Field of Employment">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Head of Lab</MenuItem>
+                <MenuItem value={4}>Master of Commerce</MenuItem>
+              </RHFSelect>
+              <RHFTextField name="university" label="University" />
+              <RHFSelect name="openToJobs" label="Are you open to job offers?">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Yes</MenuItem>
+                <MenuItem value={4}>No</MenuItem>
+              </RHFSelect>
+              <RHFSelect name="areasOfInterest" label="In what areas of interest">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Dogs</MenuItem>
+                <MenuItem value={4}>Cats</MenuItem>
+              </RHFSelect>
+              <RHFSelect name="lookingForEmployees" label="Are you looking for employees">
+                <MenuItem value="">No Data</MenuItem>
+                <MenuItem value={3}>Yes</MenuItem>
+                <MenuItem value={4}>No</MenuItem>
+              </RHFSelect>
+              {/* <RHFUpload /> */}
+              <RHFTextField name="linkedIn" label="LinkedIn Profile" />
+              {/* <RHFTextField name="state" label="State/Region" />
               <RHFTextField name="city" label="City" />
-              <RHFTextField name="zipCode" label="Zip/Code" />
+              <RHFTextField name="zipCode" label="Zip/Code" /> */}
             </Box>
 
             <Stack spacing={3} alignItems="flex-end" sx={{ mt: 3 }}>
-              <RHFTextField name="about" multiline rows={4} label="About" />
+              {/* <RHFTextField name="about" multiline rows={4} label="About" /> */}
 
               <LoadingButton type="submit" variant="contained" loading={isSubmitting}>
                 Save Changes

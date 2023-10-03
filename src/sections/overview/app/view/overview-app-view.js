@@ -53,7 +53,7 @@ export default function OverviewAppView() {
           <AppFeatured list={_appFeatured} />
         </Grid>
 
-        <Grid xs={12} md={4}>
+        {/* <Grid xs={12} md={4}>
           <AppWidgetSummary
             title="Total Active Users"
             percent={2.6}
@@ -200,7 +200,7 @@ export default function OverviewAppView() {
               }}
             />
           </Stack>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );

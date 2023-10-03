@@ -11,12 +11,28 @@ export const _carouselsMembers = [...Array(6)].map((_, index) => ({
 
 // ----------------------------------------------------------------------
 
-export const _faqs = [...Array(8)].map((_, index) => ({
-  id: _mock.id(index),
-  value: `panel${index + 1}`,
-  heading: `Questions ${index + 1}`,
-  detail: _mock.description(index),
-}));
+export const FAQS_STATUS_OPTIONS = [
+  { value: 'faqs', label: 'FAQS' },
+  { value: 'lifeafterstudies', label: 'Life after studies' },
+  { value: 'livingabroad', label: 'Living abroad' },
+  { value: 'academicresearch', label: 'Academic research' },
+];
+
+export const _faqs = [...Array(8)].map((_, index) => {
+  const status =
+    (index % 2 && FAQS_STATUS_OPTIONS[0].value) ||
+    (index % 3 && FAQS_STATUS_OPTIONS[1].value) ||
+    (index % 4 && FAQS_STATUS_OPTIONS[2].value) ||
+    FAQS_STATUS_OPTIONS[3].value;
+
+  return {
+    id: _mock.id(index),
+    value: `panel${index + 1}`,
+    heading: `Questions ${index + 1}`,
+    detail: _mock.description(index),
+    status,
+  };
+});
 
 // ----------------------------------------------------------------------
 

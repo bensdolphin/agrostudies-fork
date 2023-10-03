@@ -9,27 +9,27 @@ import { varFade, MotionViewport } from 'src/components/animate';
 
 // ----------------------------------------------------------------------
 
-export default function FaqsForm() {
+export default function FaqsFollowupForm() {
   return (
     <Stack component={MotionViewport} spacing={3} sx={{ mt: 2 }}>
-      <m.div variants={varFade().inUp}>
+      {/* <m.div variants={varFade().inUp}>
         <Typography variant="h4">{`Haven't found the right help?`}</Typography>
       </m.div>
 
-      {/* <m.div variants={varFade().inUp}>
+      <m.div variants={varFade().inUp}>
         <TextField fullWidth label="Name" />
       </m.div>
 
       <m.div variants={varFade().inUp}>
         <TextField fullWidth label="Email" />
-      </m.div> */}
+      </m.div>
 
       <m.div variants={varFade().inUp}>
         <TextField fullWidth label="Subject" />
-      </m.div>
+      </m.div> */}
 
       {/* <m.div variants={varFade().inUp}> */}
-      <TextField fullWidth label="Ask a question..." multiline rows={4} />
+      <TextField fullWidth label="Ask a follow-up question..." multiline rows={4} />
       {/* </m.div> */}
 
       {/* <m.div variants={varFade().inUp}> */}

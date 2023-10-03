@@ -62,7 +62,8 @@ const KanbanPage = lazy(() => import('src/pages/dashboard/kanban'));
 const PermissionDeniedPage = lazy(() => import('src/pages/dashboard/permission'));
 // BLANK PAGE
 const BlankPage = lazy(() => import('src/pages/dashboard/blank'));
-
+// FAQ
+const FaqsPage = lazy(() => import('src/pages/faqs'));
 // ----------------------------------------------------------------------
 
 export const dashboardRoutes = [
@@ -143,6 +144,10 @@ export const dashboardRoutes = [
           { path: 'new', element: <JobCreatePage /> },
           { path: ':id/edit', element: <JobEditPage /> },
         ],
+      },
+      {
+        path: 'faqs',
+        element: <FaqsPage />,
       },
       {
         path: 'tour',

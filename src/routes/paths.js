@@ -176,5 +176,15 @@ export const paths = {
         edit: `${ROOTS.DASHBOARD}/tour/${MOCK_ID}/edit`,
       },
     },
+    faqs: {
+      root: `${ROOTS.DASHBOARD}/faqs`,
+      new: `${ROOTS.DASHBOARD}/tour/new`,
+      details: (id) => `${ROOTS.DASHBOARD}/tour/${id}`,
+      edit: (id) => `${ROOTS.DASHBOARD}/tour/${id}/edit`,
+      demo: {
+        details: `${ROOTS.DASHBOARD}/tour/${MOCK_ID}`,
+        edit: `${ROOTS.DASHBOARD}/tour/${MOCK_ID}/edit`,
+      },
+    },
   },
 };

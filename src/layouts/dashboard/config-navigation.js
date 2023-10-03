@@ -101,7 +101,7 @@ export function useNavData() {
             path: paths.dashboard.user.root,
             icon: ICONS.user,
             children: [
-              { title: t('profile'), path: paths.dashboard.user.root },
+              // { title: t('profile'), path: paths.dashboard.user.root },
               // { title: t('cards'), path: paths.dashboard.user.cards },
               { title: t('list'), path: paths.dashboard.user.list },
               { title: t('create'), path: paths.dashboard.user.new },
@@ -177,6 +177,19 @@ export function useNavData() {
               { title: t('create'), path: paths.dashboard.job.new },
               { title: t('edit'), path: paths.dashboard.job.demo.edit },
             ],
+          },
+
+          // FAQ
+          {
+            title: t('FAQs'),
+            path: paths.dashboard.faqs.root,
+            icon: ICONS.tour,
+            // children: [
+            //   { title: t('list'), path: paths.dashboard.tour.root },
+            //   { title: t('details'), path: paths.dashboard.tour.demo.details },
+            //   { title: t('create'), path: paths.dashboard.tour.new },
+            //   { title: t('edit'), path: paths.dashboard.tour.demo.edit },
+            // ],
           },
 
           // TOUR

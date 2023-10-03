@@ -52,7 +52,7 @@ export default function FaqsHero() {
             </Stack>
           </div>
 
-          <m.div variants={varFade().in}>
+          {/* <m.div variants={varFade().in}>
             <TextField
               fullWidth
               placeholder="Search support..."
@@ -74,7 +74,7 @@ export default function FaqsHero() {
                 },
               }}
             />
-          </m.div>
+          </m.div> */}
         </Box>
       </Container>
     </Box>
