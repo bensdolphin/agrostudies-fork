@@ -63,8 +63,8 @@ const PermissionDeniedPage = lazy(() => import('src/pages/dashboard/permission')
 // BLANK PAGE
 const BlankPage = lazy(() => import('src/pages/dashboard/blank'));
 // FAQ
-const FaqsPage = lazy(() => import('src/pages/faqs'));
-const FaqNewEditForm = lazy(() => import('src/sections/faqs/faqs-new-edit-form'));
+const FaqsPage = lazy(() => import('src/pages/dashboard/faqs/faqs'));
+const FaqNewEditForm = lazy(() => import('src/pages/dashboard/faqs/new'));
 
 // ----------------------------------------------------------------------
 
@@ -149,11 +149,10 @@ export const dashboardRoutes = [
       },
       {
         path: 'faqs',
-        element: <FaqsPage />,
-      },
-      {
-        path: 'faqs/new',
-        element: <FaqNewEditForm />,
+        children: [
+          { element: <FaqsPage />, index: true },
+          { path: 'new', element: <FaqNewEditForm /> },
+        ],
       },
       {
         path: 'tour',

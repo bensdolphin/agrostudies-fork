@@ -14,6 +14,7 @@ import { fCurrency } from 'src/utils/format-number';
 // components
 import Iconify from 'src/components/iconify';
 import Markdown from 'src/components/markdown';
+import JobApplyForm from './job-apply-form';
 
 // ----------------------------------------------------------------------
 
@@ -52,6 +53,10 @@ export default function JobDetailsContent({ job }) {
             <Chip key={benefit} label={benefit} variant="soft" />
           ))}
         </Stack>
+      </Stack>
+      <Stack spacing={2}>
+        <Typography variant="h6">Apply for Job</Typography>
+        <JobApplyForm job={job} />
       </Stack>
     </Stack>
   );
