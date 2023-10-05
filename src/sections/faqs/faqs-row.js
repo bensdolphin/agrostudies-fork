@@ -25,6 +25,7 @@ import { ConfirmDialog } from 'src/components/custom-dialog';
 import { useState } from 'react';
 import FaqsFollowupForm from './faqs-followup-form';
 import FaqsEditForm from './faqs-new-edit-form';
+import FaqsUserBox from './faqs-user-box';
 // ----------------------------------------------------------------------
 
 export default function FaqsRow({ row }) {
@@ -37,8 +38,25 @@ export default function FaqsRow({ row }) {
       {isEdited ? (
         <FaqsEditForm currentFaq={row} disableEditMode={() => setIsEdited(false)} />
       ) : (
-        <Stack direction="row" justifyContent="space-between" spacing={2}>
-          <Typography>{row.detail}</Typography>{' '}
+        <Stack
+          direction="row"
+          flexWrap="wrap"
+          justifyContent="space-between"
+          alignItems={{ xs: 'flex-start', md: 'center' }}
+          spacing={{ xs: 1, md: 2 }}
+          mr={{ xs: 1, md: 2 }}
+          sx={{ width: '100%' }}
+        >
+          {row.answerBy && <FaqsUserBox user={row.answerBy} qOrA="answered" />}
+          <Typography
+            sx={{
+              width: { xs: '100%', md: 'unset' },
+              flex: { xs: 'auto', md: 1 },
+              order: { xs: 3, md: 'unset' },
+            }}
+          >
+            {row.detail}
+          </Typography>
           <MenuItem
             sx={{ alignSelf: 'start' }}
             onClick={() => {
