@@ -65,6 +65,10 @@ const BlankPage = lazy(() => import('src/pages/dashboard/blank'));
 // FAQ
 const FaqsPage = lazy(() => import('src/pages/dashboard/faqs/faqs'));
 const FaqNewEditForm = lazy(() => import('src/pages/dashboard/faqs/new'));
+// SETTINGS
+const SettingsListPage = lazy(() => import('src/pages/dashboard/settings/list'));
+const SettingsCreatePage = lazy(() => import('src/pages/dashboard/settings/new'));
+const SettingsEditPage = lazy(() => import('src/pages/dashboard/settings/edit'));
 
 // ----------------------------------------------------------------------
 
@@ -97,6 +101,15 @@ export const dashboardRoutes = [
           { path: 'new', element: <UserCreatePage /> },
           { path: ':id/edit', element: <UserEditPage /> },
           { path: 'account', element: <UserAccountPage /> },
+        ],
+      },
+      {
+        path: 'settings',
+        children: [
+          { element: <SettingsListPage />, index: true },
+          { path: 'list', element: <SettingsListPage /> },
+          { path: 'new', element: <SettingsCreatePage /> },
+          { path: ':id/edit', element: <SettingsEditPage /> },
         ],
       },
       {

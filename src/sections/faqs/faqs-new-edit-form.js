@@ -48,6 +48,8 @@ export default function FaqNewEditForm({ currentFaq, disableEditMode }) {
     title: Yup.string().required('Title is required'),
     content: Yup.string().required('Content is required'),
     tags: Yup.array().min(1, 'Must have at least 1 tags'),
+    questionBy: Yup.string(),
+    answerBy: Yup.string(),
   });
 
   const defaultValues = useMemo(
@@ -55,6 +57,8 @@ export default function FaqNewEditForm({ currentFaq, disableEditMode }) {
       title: currentFaq?.heading || '',
       content: currentFaq?.detail || '',
       tags: currentFaq?.categories || [],
+      questionBy: currentFaq?.questionBy.email || '',
+      answerBy: currentFaq?.answerBy.email || '',
     }),
     [currentFaq]
   );
@@ -186,6 +190,8 @@ export default function FaqNewEditForm({ currentFaq, disableEditMode }) {
                 ))
               }
             />
+            <RHFTextField name="questionBy" label="Question By (email address only)" />
+            <RHFTextField name="answerBy" label="Answer By (email address only)" />
           </Stack>
         </Card>
       </Grid>
