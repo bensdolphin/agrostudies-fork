@@ -50,6 +50,37 @@ export const _faqs = [...Array(8)].map((_, index) => {
 
 // ----------------------------------------------------------------------
 
+export const _categoryList = [
+  { id: '1', name: 'Forum Categories' },
+  { id: '2', name: 'Blog Tags' },
+  { id: '3', name: 'Job Tags' },
+  { id: '4', name: 'Fields of Employment' },
+];
+
+export const _categoryItems = [
+  { id: '10', name: 'FAQs', category: '1' },
+  { id: '11', name: 'Finding A Job', category: '1' },
+  // { id: '4', name: 'Life in Israel' },
+  // { id: '5', name: 'Money Issues' },
+  { id: '20', name: 'News', category: '2' },
+  { id: '21', name: 'Updates', category: '2' },
+  // { id: '4', name: 'Announcements' },
+  // { id: '5', name: 'Agriculture' },
+  // { id: '6', name: 'Success Stories' },
+  { id: '30', name: 'Manager', category: '3' },
+  { id: '31', name: 'Worker', category: '3' },
+  { id: '32', name: 'Biologist', category: '3' },
+  // { id: '4', name: 'Chemist' },
+  // { id: '5', name: 'Exporter' },
+  { id: '40', name: 'Field', category: '4' },
+  { id: '41', name: 'Academy', category: '4' },
+  // { id: '3', name: 'Development' },
+  // { id: '4', name: 'Product' },
+  // { id: '5', name: 'Entrepreneurship' },
+];
+
+// ----------------------------------------------------------------------
+
 export const _addressBooks = [...Array(24)].map((_, index) => ({
   id: _mock.id(index),
   primary: index === 0,

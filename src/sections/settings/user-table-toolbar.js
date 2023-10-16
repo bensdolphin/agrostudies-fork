@@ -42,6 +42,19 @@ export default function UserTableToolbar({
     [onFilters]
   );
 
+  const handleFilterCategory = useCallback(
+    (event) => {
+      onFilters(
+        'category',
+        typeof event.target.value === 'string' ? event.target.value.split(',') : event.target.value
+      );
+    },
+    [onFilters]
+  );
+
+  const categoryName = roleOptions.find((categoryObj) => categoryObj.id === filters.category).name;
+  const rolesOptionsArray = roleOptions.map((role) => role.name);
+
   return (
     <>
       <Stack
@@ -65,34 +78,31 @@ export default function UserTableToolbar({
           <InputLabel>Role</InputLabel>
 
           <Select
-            multiple
-            value={filters.role}
-            onChange={handleFilterRole}
+            // multiple
+            value={categoryName}
+            onChange={handleFilterCategory}
             input={<OutlinedInput label="Role" />}
-            renderValue={(selected) => {
-              console.log(selected);
-              return selected.map((value) => value).join(', ');
-            }}
+            renderValue={(selected) => selected}
             MenuProps={{
               PaperProps: {
                 sx: { maxHeight: 240 },
               },
             }}
           >
-            {roleOptions.map((option) => (
+            {rolesOptionsArray.map((option) => (
               <MenuItem key={option} value={option}>
-                <Checkbox disableRipple size="small" checked={filters.role.includes(option)} />
+                {/* <Checkbox disableRipple size="small" checked={filters.role.includes(option)} /> */}
                 {option}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
 
-        <Stack direction="row" alignItems="center" spacing={2} flexGrow={1} sx={{ width: 1 }}>
+        {/* <Stack direction="row" alignItems="center" spacing={2} flexGrow={1} sx={{ width: 1 }}>
           <TextField
             fullWidth
             value={filters.name}
-            onChange={handleFilterName}
+            onChange={handleFilterCategory}
             placeholder="Search..."
             InputProps={{
               startAdornment: (
@@ -106,7 +116,7 @@ export default function UserTableToolbar({
           <IconButton onClick={popover.onOpen}>
             <Iconify icon="eva:more-vertical-fill" />
           </IconButton>
-        </Stack>
+        </Stack> */}
       </Stack>
 
       <CustomPopover
