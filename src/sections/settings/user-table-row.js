@@ -21,7 +21,14 @@ import UserQuickEditForm from './user-quick-edit-form';
 
 // ----------------------------------------------------------------------
 
-export default function UserTableRow({ row, selected, onEditRow, onSelectRow, onDeleteRow }) {
+export default function UserTableRow({
+  row,
+  selected,
+  onEditRow,
+  onSelectRow,
+  onDeleteRow,
+  categoryList,
+}) {
   const {
     name,
     avatarUrl,
@@ -66,7 +73,12 @@ export default function UserTableRow({ row, selected, onEditRow, onSelectRow, on
         </TableCell>
       </TableRow>
 
-      <UserQuickEditForm currentUser={row} open={quickEdit.value} onClose={quickEdit.onFalse} />
+      <UserQuickEditForm
+        currentItem={row}
+        open={quickEdit.value}
+        onClose={quickEdit.onFalse}
+        categoryList={categoryList}
+      />
 
       <CustomPopover
         open={popover.open}
@@ -107,4 +119,5 @@ UserTableRow.propTypes = {
   onSelectRow: PropTypes.func,
   row: PropTypes.object,
   selected: PropTypes.bool,
+  categoryList: PropTypes.array,
 };

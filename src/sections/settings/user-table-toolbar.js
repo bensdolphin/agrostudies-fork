@@ -75,13 +75,13 @@ export default function UserTableToolbar({
             width: { xs: 1, md: 200 },
           }}
         >
-          <InputLabel>Role</InputLabel>
+          <InputLabel>Category</InputLabel>
 
           <Select
             // multiple
             value={categoryName}
             onChange={handleFilterCategory}
-            input={<OutlinedInput label="Role" />}
+            input={<OutlinedInput label="Category" />}
             renderValue={(selected) => selected}
             MenuProps={{
               PaperProps: {

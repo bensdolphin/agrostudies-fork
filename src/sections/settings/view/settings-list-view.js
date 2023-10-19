@@ -89,10 +89,11 @@ export default function SettingsListView() {
 
   const notFound = (!dataFiltered.length && canReset) || !dataFiltered.length;
 
+  const currentCategory = _categoryList.find((category) => category.id === filters.category).name;
+
   const handleFilters = useCallback(
     (name, value) => {
       const categoryId = _categoryList.find((cat) => cat.name === value[0]).id;
-      console.log(categoryId);
       table.onResetPage();
       setFilters((prevState) => ({
         ...prevState,
@@ -154,7 +155,7 @@ export default function SettingsListView() {
           action={
             <Button
               component={RouterLink}
-              href={paths.dashboard.settings.new}
+              href={`${paths.dashboard.settings.new}?categoryId=${filters.category}`}
               variant="contained"
               startIcon={<Iconify icon="mingcute:add-line" />}
             >
@@ -219,6 +220,7 @@ export default function SettingsListView() {
                         onSelectRow={() => table.onSelectRow(row.id)}
                         onDeleteRow={() => handleDeleteRow(row.id)}
                         onEditRow={() => handleEditRow(row.id)}
+                        categoryList={_categoryList}
                       />
                     ))}
 

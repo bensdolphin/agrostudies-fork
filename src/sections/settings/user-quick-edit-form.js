@@ -24,16 +24,18 @@ import FormProvider, { RHFSelect, RHFTextField, RHFAutocomplete } from 'src/comp
 
 // ----------------------------------------------------------------------
 
-export default function UserQuickEditForm({ currentItem, open, onClose }) {
+export default function UserQuickEditForm({ currentItem, open, onClose, categoryList }) {
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
+    categoryId: Yup.string().required('Category is required'),
   });
 
   const defaultValues = useMemo(
     () => ({
       name: currentItem?.name || '',
+      categoryId: currentItem?.category || '',
     }),
     [currentItem]
   );
@@ -81,13 +83,20 @@ export default function UserQuickEditForm({ currentItem, open, onClose }) {
             display="grid"
             gridTemplateColumns={{
               xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
+              sm: 'repeat(1, 1fr)',
             }}
+            sx={{ m: 2 }}
           >
             <RHFTextField name="name" label="Item Name" />
+            <RHFSelect name="categoryId" label="Category">
+              {categoryList.map((category) => (
+                <MenuItem key={category.name} value={category.id}>
+                  {category.name}
+                </MenuItem>
+              ))}
+            </RHFSelect>
           </Box>
         </DialogContent>
-
         <DialogActions>
           <Button variant="outlined" onClick={onClose}>
             Cancel
@@ -106,4 +115,5 @@ UserQuickEditForm.propTypes = {
   currentItem: PropTypes.object,
   onClose: PropTypes.func,
   open: PropTypes.bool,
+  categoryList: PropTypes.array,
 };

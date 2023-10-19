@@ -18,7 +18,7 @@ import { MenuItem } from '@mui/material';
 import { fData } from 'src/utils/format-number';
 // routes
 import { paths } from 'src/routes/paths';
-import { useRouter } from 'src/routes/hooks';
+import { useRouter, useSearchParams } from 'src/routes/hooks';
 // assets
 import { countries } from 'src/assets/data';
 // components
@@ -34,23 +34,30 @@ import FormProvider, {
   RHFSelect,
   RHFUpload,
 } from 'src/components/hook-form';
+// mock
+import { _categoryList } from 'src/_mock';
 
 // ----------------------------------------------------------------------
 
 export default function UserNewEditForm({ currentItem }) {
+  const searchParams = useSearchParams();
+  const currentCategoryId = searchParams.get('categoryId');
+
   const router = useRouter();
 
   const { enqueueSnackbar } = useSnackbar();
 
   const NewUserSchema = Yup.object().shape({
     name: Yup.string().required('Name is required'),
+    categoryId: Yup.string().required('Category is required'),
   });
 
   const defaultValues = useMemo(
     () => ({
       name: currentItem?.name || '',
+      categoryId: currentCategoryId || '',
     }),
-    [currentItem]
+    [currentItem, currentCategoryId]
   );
 
   const methods = useForm({
@@ -107,9 +114,16 @@ export default function UserNewEditForm({ currentItem }) {
               display="grid"
               gridTemplateColumns={{
                 xs: 'repeat(1, 1fr)',
-                sm: 'repeat(2, 1fr)',
+                sm: 'repeat(1, 1fr)',
               }}
             >
+              <RHFSelect name="categoryId" label="Category">
+                {_categoryList.map((category) => (
+                  <MenuItem key={category.name} value={category.id}>
+                    {category.name}
+                  </MenuItem>
+                ))}
+              </RHFSelect>
               <RHFTextField name="name" label="Item Name" />
             </Box>
             <Stack alignItems="flex-start" sx={{ mt: 3 }}>
